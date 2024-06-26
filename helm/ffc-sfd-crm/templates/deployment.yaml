@@ -1,0 +1,8 @@
+{{- include "adp-helm-library.deployment" (list . "ffc-sfd-crm.deployment") -}}
+{{- define "ffc-sfd-crm.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "adp-helm-library.container" (list . "ffc-sfd-crm.container") }}
+{{- end -}}
