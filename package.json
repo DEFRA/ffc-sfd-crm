@@ -1,6 +1,6 @@
 {
   "name": "ffc-sfd-crm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Passes information from single front door into CRM",
   "homepage": "github.com?owner=defra&repo=ffc-sfd-crm&organization=defra",
   "main": "app/index.js",
