@@ -8,8 +8,8 @@ services:
     image: ffc-sfd-crm-development
     container_name: ffc-sfd-crm-development
     ports:
-      - "3000:3000"
-      - "9229:9229"
+      - "3018:3018"
+      - "9018:9229"
     volumes:
       - ./app:/home/node/app
       - ./test:/home/node/test
