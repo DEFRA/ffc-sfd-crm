@@ -1,6 +1,6 @@
 {
   "name": "ffc-sfd-crm",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Passes information from single front door into CRM",
   "homepage": "github.com?owner=defra&repo=ffc-sfd-crm&organization=defra",
   "main": "app/index.js",
@@ -16,7 +16,10 @@
     "start:debug": "nodemon --inspect-brk=0.0.0.0 --ext js --legacy-watch app/index.js"
   },
   "author": "Defra",
-  "contributors": [],
+  "contributors": [
+    "Fay Toward <fay.toward@defra.gov.uk>",
+    "Rana Salem <rana.salem@defra.gov.uk>"
+  ],
   "license": "OGL-UK-3.0",
   "dependencies": {
     "@hapi/hapi": "21.3.2",
