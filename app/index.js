@@ -10,7 +10,6 @@ if (process.env.NODE_ENV === DEVELOPMENT) {
 
 const init = async () => {
   await startMessaging()
-  console.log('Running CRM service')
 }
 
 process.on('unhandledRejection', (err) => {

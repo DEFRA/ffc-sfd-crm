@@ -19,7 +19,7 @@ const startMessaging = async () => {
     eventsAction
   )
   await crmReceiver.subscribe()
-  console.info('Messages receiver is ready to consume messages')
+  console.info('Running CRM service')
 }
 
 module.exports = { startMessaging }
