@@ -5,9 +5,11 @@ services:
       target: production
     image: ffc-sfd-crm
     container_name: ffc-sfd-crm
-    depends_on:
-      - ffc-sfd-crm-postgres
     environment:
       APPINSIGHTS_CLOUDROLE: ffc-sfd-crm-local
       APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
-
+      MESSAGE_HOST: ${MESSAGE_HOST}
+      MESSAGE_USER: ${MESSAGE_USER}
+      MESSAGE_PASSWORD: ${MESSAGE_PASSWORD}
+      CRM_TOPIC_ADDRESS: ${CRM_TOPIC_ADDRESS}-${DEV_SUFFIX}
+      CRM_SUBSCRIPTION_ADDRESS: ${CRM_SUBSCRIPTION_ADDRESS}-${DEV_SUFFIX}
