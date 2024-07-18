@@ -4,7 +4,7 @@ const path = require('path')
 const messageProcessor = async (data) => {
   try {
     const dirPath = path.join(__dirname, '..', 'data')
-    const filePath = path.join(dirPath, 'output.json')
+    const filePath = path.join(dirPath, 'events.json')
     await fs.mkdir(dirPath, { recursive: true })
 
     let messages = []
