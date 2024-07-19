@@ -3,7 +3,7 @@
   type: "keyvault"
 - key: MESSAGE_HOST
   value: "SNDADPINFSB4401.servicebus.windows.net"
-- key: MESSAGES_TOPIC_ADDRESS
+- key: CRM_TOPIC_ADDRESS
   value: "fcp-sfd-crm-events"
-- key: MESSAGES_SUBSCRIPTION_ADDRESS
-  value: "fcp-sfd-customer-receiver-messages"
+- key: CRM_SUBSCRIPTION_ADDRESS
+  value: "fcp-sfd-crm"
