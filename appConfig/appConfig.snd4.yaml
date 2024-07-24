@@ -1,3 +1,9 @@
 - key: APPINSIGHTS_CONNECTIONSTRING
   value: "{{servicename}}-APPINSIGHTS-CONNECTIONSTRING"
   type: "keyvault"
+- key: MESSAGE_HOST
+  value: "SNDADPINFSB4401.servicebus.windows.net"
+- key: CRM_TOPIC_ADDRESS
+  value: "fcp-sfd-crm-messages"
+- key: CRM_SUBSCRIPTION_ADDRESS
+  value: "fcp-sfd-crm"

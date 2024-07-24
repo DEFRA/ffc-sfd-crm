@@ -1,10 +1,12 @@
 const util = require('util')
 const { eventsConfig } = require('../config')
 const { MessageReceiver } = require('ffc-messaging')
+const { messageProcessor } = require('./message-processor')
 
 const handleMessage = async (message, receiver) => {
   try {
     console.log('Received event:', message.body)
+    await messageProcessor(message.body)
     await receiver.completeMessage(message)
   } catch (err) {
     console.error('Message error', util.inspect(err.message, false, null, true))
