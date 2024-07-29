@@ -36,3 +36,5 @@ axiosInstance.interceptors.response.use(response => (
   error.error = err.response?.data?.error
   return Promise.reject(error)
 })
+
+module.exports = axiosInstance
