@@ -1,7 +1,5 @@
-const getAccessToken = require('./get-access-token')
-const isValidAccessToken = require('./validate-access-token')
+const swapDateMonth = require('./swap-date-month')
 
 module.exports = {
-  getAccessToken,
-  isValidAccessToken
+  swapDateMonth
 }

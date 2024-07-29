@@ -1,6 +1,6 @@
 const axios = require('axios')
 const axiosInstance = require('./axios-instance')
-const { getAccessToken, isValidAccessToken } = require('../utils')
+const { getAccessToken, isValidAccessToken } = require('../token')
 
 axiosInstance.interceptors.request.use(async config => {
   if (isValidAccessToken(config)) {

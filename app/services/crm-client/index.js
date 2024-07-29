@@ -2,6 +2,7 @@ const checkContact = require('./check-contact')
 const checkOrganisation = require('./check-organisation')
 const createCase = require('./create-case')
 const createOnlineSubmissionActivity = require('./create-online-submission-activity')
+const handleError = require('./handle-error')
 
 class CRMClient {
   async checkContact (id) {
@@ -18,6 +19,10 @@ class CRMClient {
 
   async createOnlineSubmissionActivity (body) {
     return createOnlineSubmissionActivity(body)
+  }
+
+  async handleError (error) {
+    return handleError(error)
   }
 }
 

@@ -1,4 +1,5 @@
 const api = require('../api')
+const swapDateMonth = require('../../utils')
 
 const createOnlineSubmissionActivity = async (body) => {
   const { caseId, organisationId, contactId, submissionId, submissionDateTime, holdStatus, type, validCrns, crmBankAccountNumber, invalidCrns } = body
@@ -17,7 +18,7 @@ const createOnlineSubmissionActivity = async (body) => {
         'partyid_account@odata.bind': `/accounts(${organisationId})`
       }
     ],
-    rpa_onlinesubmissiondate: new Date(this.swapDateMonth(submissionDateTime)).toISOString(),
+    rpa_onlinesubmissiondate: new Date(swapDateMonth(submissionDateTime)).toISOString(),
     rpa_onlinesubmissionid: `${submissionId}`,
     rpa_genericcontrol2: `${crmBankAccountNumber}`,
     subject: `${type} (${submissionId})`
