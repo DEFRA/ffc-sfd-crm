@@ -1,6 +1,6 @@
 const api = require('../api')
 
-async function createOnlineSubmissionActivity (body) {
+const createOnlineSubmissionActivity = async (body) => {
   const { caseId, organisationId, contactId, submissionId, submissionDateTime, holdStatus, type, validCrns, crmBankAccountNumber, invalidCrns } = body
 
   const data = {

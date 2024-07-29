@@ -1,11 +1,6 @@
 const api = require('../api')
 
-async function createCase (
-  organisationId,
-  contactId,
-  submissionId,
-  type
-) {
+const createCase = async (organisationId, contactId, submissionId, type) => {
   const data = {
     caseorigincode: process.env.CASE_ORIGIN_CODE,
     casetypecode: process.env.CASE_TYPE_CODE,
