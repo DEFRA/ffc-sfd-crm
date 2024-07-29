@@ -10,9 +10,9 @@ const schema = Joi.object({
 
 const config = {
   auth: {
-    clientId: process.env.CRM_CLIENT_ID,
+    clientId: process.env.CRM_CLIENT_APP_ID,
     authority: `https://login.microsoftonline.com/${process.env.CRM_TENANT_ID}`,
-    clientSecret: process.env.CRM_CLIENT_SECRET
+    clientSecret: process.env.CRM_CLIENT_SECRET_VALUE
   }
 }
 

@@ -1,7 +1,8 @@
+const axios = require('axios')
 const axiosInstance = require('./axios-instance')
 const { getAccessToken, isValidAccessToken } = require('../utils')
 
-axiosInstance.interceptors.request.use(async (config) => {
+axiosInstance.interceptors.request.use(async config => {
   if (isValidAccessToken(config)) {
     return config
   }
@@ -9,7 +10,29 @@ axiosInstance.interceptors.request.use(async (config) => {
   const token = await getAccessToken()
 
   config.headers.Authorization = `Bearer ${token.accessToken}`
-  config._tokenExpiry = new Date(token.expiresOn)
+  config._tokenExpiry = token.expiresOn
 
   return config
+}, err => Promise.reject(err))
+
+axiosInstance.interceptors.response.use(response => (
+  response
+), async (err) => {
+  const originalRequest = err.config
+  const unauthorizedStatusCode = 401
+  if (err.response?.status === unauthorizedStatusCode && !originalRequest._retry) {
+    originalRequest._retry = true
+
+    const token = await getAccessToken()
+
+    axios.defaults.headers.Authorization = `Bearer ${token.accessToken}`
+    axios.defaults._tokenExpiry = token.expiresOn
+
+    return axiosInstance(originalRequest)
+  }
+
+  const error = new Error(err.response?.statusText || err.message)
+  error.status = err.response?.status
+  error.error = err.response?.data?.error
+  return Promise.reject(error)
 })

@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 const axiosInstance = axios.create({
-  baseUrl: process.env.CRM_API_URL, // need to obtain this env var
+  baseUrl: process.env.CRM_API_URL,
   timeout: 30000,
   headers: {
     Accept: 'application/json',
@@ -9,4 +9,4 @@ const axiosInstance = axios.create({
   }
 })
 
-module.exports = { axiosInstance }
+module.exports = axiosInstance
