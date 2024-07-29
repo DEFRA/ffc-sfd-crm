@@ -7,3 +7,10 @@
   value: "fcp-sfd-crm-messages"
 - key: CRM_SUBSCRIPTION_ADDRESS
   value: "fcp-sfd-crm"
+- key: CRM_CLIENT_APP_ID
+  value: "{{servicename}}-CLIENT-APP-ID"
+- key: CRM_CLIENT_SECRET_VALUE
+  value: "{{servicename}}-CLIENT-SECRET-VALUE"
+  type: "keyvault"
+- key: CRM_CLIENT_SECRET_ID
+  value: "{{servicename}}-CLIENT-SECRET-ID"

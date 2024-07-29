@@ -36,12 +36,10 @@ const config = {
   }
 }
 
-const result = schema.validate(config, {
-  abortEarly: false
-})
+const result = schema.validate(config, { abortEarly: false })
 
 if (result.error) {
-  throw new Error(`The CRM events config is invalid. ${result.error.message}`)
+  throw new Error(`The message config is invalid. ${result.error.message}`)
 }
 
 const eventsSubscription = {

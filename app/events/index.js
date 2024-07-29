@@ -1,5 +1,5 @@
 const util = require('util')
-const { eventsConfig } = require('../config')
+const { messageConfig } = require('../config')
 const { MessageReceiver } = require('ffc-messaging')
 const { messageProcessor } = require('./message-processor')
 
@@ -17,7 +17,7 @@ const startMessaging = async () => {
   let crmReceiver //eslint-disable-line
   const eventsAction = (message) => handleMessage(message, crmReceiver)
   crmReceiver = new MessageReceiver(
-    eventsConfig.eventsSubscription,
+    messageConfig.eventsSubscription,
     eventsAction
   )
   await crmReceiver.subscribe()
