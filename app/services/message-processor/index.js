@@ -17,10 +17,10 @@ const handleMessage = async (message, receiver) => {
 
 const startMessaging = async () => {
   let crmReceiver //eslint-disable-line
-  const eventsAction = (message) => handleMessage(message, crmReceiver)
+  const crmAction = (message) => handleMessage(message, crmReceiver)
   crmReceiver = new MessageReceiver(
-    messageConfig.eventsSubscription,
-    eventsAction
+    messageConfig.crmSubscription,
+    crmAction
   )
   await crmReceiver.subscribe()
   console.info('Running CRM service')
