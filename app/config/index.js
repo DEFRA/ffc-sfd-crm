@@ -1,5 +1,7 @@
-const eventsConfig = require('./events')
+const messageConfig = require('./message')
+const msalConfig = require('./msal')
 
 module.exports = {
-  eventsConfig
+  messageConfig,
+  msalConfig
 }

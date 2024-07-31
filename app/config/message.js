@@ -2,7 +2,7 @@ const Joi = require('joi')
 const { PRODUCTION } = require('../constants/environments')
 
 const schema = Joi.object({
-  eventsQueue: {
+  crmQueue: {
     host: Joi.string(),
     username: Joi.string(),
     password: Joi.string(),
@@ -10,7 +10,7 @@ const schema = Joi.object({
     managedIdentityClientId: Joi.string().optional(),
     appInsights: Joi.object()
   },
-  eventsSubscription: {
+  crmSubscription: {
     address: Joi.string(),
     topic: Joi.string(),
     type: Joi.string().allow('subscription')
@@ -18,7 +18,7 @@ const schema = Joi.object({
 })
 
 const config = {
-  eventsQueue: {
+  crmQueue: {
     host: process.env.MESSAGE_HOST,
     username: process.env.MESSAGE_USER,
     password: process.env.MESSAGE_PASSWORD,
@@ -29,24 +29,22 @@ const config = {
         ? require('applicationinsights')
         : undefined
   },
-  eventsSubscription: {
+  crmSubscription: {
     address: process.env.CRM_SUBSCRIPTION_ADDRESS,
     topic: process.env.CRM_TOPIC_ADDRESS,
     type: 'subscription'
   }
 }
 
-const result = schema.validate(config, {
-  abortEarly: false
-})
+const result = schema.validate(config, { abortEarly: false })
 
 if (result.error) {
-  throw new Error(`The CRM events config is invalid. ${result.error.message}`)
+  throw new Error(`The message config is invalid. ${result.error.message}`)
 }
 
-const eventsSubscription = {
-  ...result.value.eventsQueue,
-  ...result.value.eventsSubscription
+const crmSubscription = {
+  ...result.value.crmQueue,
+  ...result.value.crmSubscription
 }
 
-module.exports = { eventsSubscription }
+module.exports = { crmSubscription }
