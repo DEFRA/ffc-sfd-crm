@@ -1,5 +1,5 @@
 const util = require('util')
-const { messageConfig } = require('../config')
+const { messageConfig } = require('../../config')
 const { MessageReceiver } = require('ffc-messaging')
 const { checkAdditionalCrns } = require('./check-additional-crns')
 const { processMessageToCrm } = require('./process-message-to-crm')
