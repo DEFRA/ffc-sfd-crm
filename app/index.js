@@ -1,6 +1,6 @@
 require('./insights').setup()
 require('log-timestamp')
-const { startMessaging } = require('./events')
+const { startMessaging } = require('./services/message-processor')
 
 const init = async () => {
   await startMessaging()

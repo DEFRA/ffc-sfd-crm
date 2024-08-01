@@ -1,5 +1,5 @@
 const Wreck = require('@hapi/wreck')
-const { getAccessToken, isValidAccessToken } = require('../token')
+const { getAccessToken, isValidAccessToken } = require('../../token')
 
 const makeRequest = async (options) => {
   const { method, url, headers, payload } = options
