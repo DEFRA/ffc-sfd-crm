@@ -46,5 +46,3 @@ axiosInstance.interceptors.response.use(response => (
 })
 
 module.exports = axiosInstance
-
-

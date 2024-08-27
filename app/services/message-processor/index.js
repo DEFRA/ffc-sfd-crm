@@ -6,9 +6,9 @@ const processMessageToCrm = require('./process-message-to-crm')
 
 const handleMessage = async (message, receiver) => {
   try {
-  console.log('Received event:', message.body)
+    console.log('Received event:', message.body)
     // await checkAdditionalCrns(message.body)
-    
+
     await processMessageToCrm(message.body)
     await receiver.completeMessage(message)
   } catch (err) {

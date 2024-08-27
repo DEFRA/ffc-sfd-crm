@@ -24,4 +24,4 @@ if (configResult.error) {
   throw new Error(`The MSAL config is invalid. ${configResult.error.message}`)
 }
 
-module.exports = { config: config, host: host }
+module.exports = { config, host }
