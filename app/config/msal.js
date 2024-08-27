@@ -16,10 +16,12 @@ const config = {
   }
 }
 
-const result = schema.validate(config, { abortEarly: false })
+const host = process.env.CRM_API_HOST
 
-if (result.error) {
-  throw new Error(`The MSAL config is invalid. ${result.error.message}`)
+const configResult = schema.validate(config, { abortEarly: false })
+
+if (configResult.error) {
+  throw new Error(`The MSAL config is invalid. ${configResult.error.message}`)
 }
 
-module.exports = { msalConfig: result.value }
+module.exports = { config, host }

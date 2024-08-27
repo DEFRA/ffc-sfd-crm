@@ -1,13 +1,14 @@
 const util = require('util')
 const { messageConfig } = require('../../config')
 const { MessageReceiver } = require('ffc-messaging')
-const { checkAdditionalCrns } = require('./check-additional-crns')
-const { processMessageToCrm } = require('./process-message-to-crm')
+// const checkAdditionalCrns = require('./check-additional-crns')
+const processMessageToCrm = require('./process-message-to-crm')
 
 const handleMessage = async (message, receiver) => {
   try {
     console.log('Received event:', message.body)
-    await checkAdditionalCrns(message.body)
+    // await checkAdditionalCrns(message.body)
+
     await processMessageToCrm(message.body)
     await receiver.completeMessage(message)
   } catch (err) {

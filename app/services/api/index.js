@@ -1,52 +1,48 @@
-const Wreck = require('@hapi/wreck')
+const axios = require('axios')
 const { getAccessToken, isValidAccessToken } = require('../../token')
 
-const makeRequest = async (options) => {
-  const { method, url, headers, payload } = options
+const axiosInstance = axios.create({
+  baseURL: process.env.CRM_API_URL,
+  timeout: 30000,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
+})
 
-  const defaults = Wreck.defaults({
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    timeout: 30000,
-    baseUrl: process.env.CRM_API_URL
-  })
-
-  const requestHeaders = {
-    ...headers,
-    'Content-Type': 'application/json',
-    Accept: 'application/json'
+axiosInstance.interceptors.request.use(async config => {
+  if (isValidAccessToken(config)) {
+    return config
   }
 
-  if (!isValidAccessToken(requestHeaders)) {
+  const token = await getAccessToken()
+
+  config.headers.Authorization = `Bearer ${token.accessToken}`
+  config._tokenExpiry = token.expiresOn
+
+  return config
+}, err => Promise.reject(err))
+
+axiosInstance.interceptors.response.use(response => (
+  response
+), async (err) => {
+  const originalRequest = err.config
+  const unauthorizedStatusCode = 401
+  if (err.response?.status === unauthorizedStatusCode && !originalRequest._retry) {
+    originalRequest._retry = true
+
     const token = await getAccessToken()
-    requestHeaders.Authorization = `Bearer ${token.accessToken}`
-    requestHeaders._tokenExpiry = token.expiresOn
+
+    axios.defaults.headers.Authorization = `Bearer ${token.accessToken}`
+    axios.defaults._tokenExpiry = token.expiresOn
+
+    return axiosInstance(originalRequest)
   }
 
-  try {
-    const response = await defaults.request(method, url, {
-      headers: requestHeaders,
-      payload: JSON.stringify(payload)
-    })
+  const error = new Error(err.response?.statusText || err.message)
+  error.status = err.response?.status
+  error.error = err.response?.data?.error
+  return Promise.reject(error)
+})
 
-    return {
-      statusCode: response.statusCode,
-      payload: await Wreck.read(response, { json: true })
-    }
-  } catch (error) {
-    if (error.response?.statusCode === 401 && !error._retry) {
-      error._retry = true
-
-      const token = await getAccessToken()
-      requestHeaders.Authorization = `Bearer ${token.accessToken}`
-      requestHeaders._tokenExpiry = token.expiresOn
-
-      return makeRequest({ method, url, headers: requestHeaders, payload })
-    }
-    throw new Error(error.message)
-  }
-}
-
-module.exports = makeRequest
+module.exports = axiosInstance

@@ -1,6 +1,6 @@
 {
   "name": "ffc-sfd-crm",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Passes information from single front door into CRM",
   "homepage": "github.com?owner=defra&repo=ffc-sfd-crm&organization=defra",
   "main": "app/index.js",
@@ -26,7 +26,9 @@
     "applicationinsights": "2.8.0",
     "ffc-messaging": "2.10.0",
     "joi": "17.13.3",
-    "log-timestamp": "0.3.0"
+    "log-timestamp": "0.3.0",
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.4"
   },
   "devDependencies": {
     "@types/jest": "29.5.11",
