@@ -1,7 +1,7 @@
 const { checkContact, checkOrganisation, createCase, createOnlineSubmissionActivity, handleError } = require('../crm-client')
 
 const processMessageToCRM = async (body) => {
-  const { frn, crn, SubmissionId, submissionDateTime, holdStatus, type, listofCRNwithEmpowerment, crmBankAccountNumber } = body
+const { frn, crn, SubmissionId, submissionDateTime, holdStatus, type, listofCRNwithEmpowerment, crmBankAccountNumber } = body
 
   const headerSubstringStart = 37
   const headerSubstringEnd = 1
@@ -33,7 +33,7 @@ const processMessageToCRM = async (body) => {
       throw new Error('Could not find contactid')
     }
 
-    const crmCase = await createCase(
+    /* const crmCase = await createCase(
       organisationId,
       contactId,
       SubmissionId,
@@ -68,7 +68,7 @@ const processMessageToCRM = async (body) => {
         crmBankAccountNumber,
         invalidCrns
       }
-    )
+    ) 
 
     const activityUrl = crmActivity.headers['odata-entityid']
     activityId = activityUrl.substring(
@@ -87,7 +87,7 @@ const processMessageToCRM = async (body) => {
       await handleError({ stack: 'Invalid additional Crns', submissionId: SubmissionId, message: `Could not find contact ids for the following additional crns : ${invalidCrns}` })
     } else {
       logMessage += 'No Invalid additional crns found'
-    }
+    } */
 
     console.log('Message processed to CRM')
   } catch (err) {
@@ -95,7 +95,7 @@ const processMessageToCRM = async (body) => {
     err.log = logMessage
     console.error('Could not process message to CRM:', err)
     throw err
-  }
+  } 
 }
 
 module.exports = processMessageToCRM
